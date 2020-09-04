@@ -1,0 +1,52 @@
+\pdfoutput=1
+\documentclass[letterpaper]{article}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{breakcites}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{algorithm,algorithmic,a4wide,amssymb,natbib,multicol,enumitem,url}
+\usepackage[breaklinks]{hyperref}
+\usepackage[top=3.7cm, bottom=3.7cm, left=3.7cm, right=3.7cm]{geometry}
+\newcommand{\mline}[4]{\put(#1,#2){\qbezier(0,0)(0,0)(#3,#4)}}
+\newcommand{\eq}[1]{Equation \ref{#1}}
+\newcommand{\fig}[1]{Figure \ref{#1}}
+\begin{document}
+
+\title{Can machines learn?}
+\date{2020}
+\author{Rowan Clarke}
+\maketitle
+
+\begin{abstract}
+
+This is an abstract.
+
+\vspace{7mm}
+\noindent
+
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\input{sections/intro.tex}
+
+\input{sections/perceptron.tex}
+
+\input{sections/arch.tex}
+
+\section{Conclusion}
+\label{conc}
+
+\end{document}
+
+
+
+
+
+
+
+
