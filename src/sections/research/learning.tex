@@ -1,0 +1,33 @@
+\section{Learning} 
+
+\subsection{Inspiration from Human Learning}
+\label{human}
+
+Our brains process information through \gls{neuron}s, which combine many electrical inputs, called \gls{dend}s, into one output, the \gls{axon}. These \gls{neuron}s are connected via \gls{synapse}s, which chemically transmit information via neurotransmitters. \cite{brain} 
+
+The amount of neurotransmitter released will change how strong the connection is. If a connection is stronger from one \gls{neuron} than any other \gls{neuron}, the activation is mostly dependent on that \gls{neuron}. 
+
+By connecting multiple \gls{neuron}s together, we allow for more complex operations. Our cerebellum - the part of the brain that controls language, motor function, and cognitive learning - consists of roughly $10^{11}$ \gls{neuron}s, each connected to approximately $10^4$ other \gls{neuron}s.\cite{neuron}
+
+\subsection{Hebbian Theory}
+\label{hebb}
+
+To digitalise this biological structure of the brain into a machine is simply impossible on any piece of hardware - as we would have to simulate the position and activation of $10^{15}$ connections - so we need a mathematical \gls{model} of the brain. The Hebbian Theory attempts to \gls{model} this behaviour.
+
+The Hebbian Theory suggests that if two \gls{neuron}s in space activate in phase - at the same time - the connection between them should strengthen. If in opposite phase, the connection should become weaker. No correlation between the activations should not affect the connection.\cite[p.~70]{hebb}
+
+Hebbian learning tries to replicate learning in animals such that 
+\begin{equation}
+w_{ij}=x_ix_j 
+\label{eq:hebb}
+\end{equation}
+where $w_{ij}$ is the weighted \gls{synapse} between \gls{neuron} $i$ and \gls{neuron} $j$, and $x_i$ is the value at \gls{neuron} $i$, at a given time in space. Linking this with the biological \gls{neuron}, $x_i$ is the \gls{axon} of $i$ - as with $j$ - and $w_{ij}$ is the strength of the \gls{synapse} connecting the \gls{axon} of $i$ to the \gls{dend} of $j$.\\
+We can rectify \eq{eq:hebb} to 
+\begin{equation} 
+\Delta w_{ij}=x_ix_j
+\label{eq:dhebb}
+\end{equation}
+such that $w_{ij}$ changes based on its current state so that previous inputs are not obsolete.
+
+To put this into an example, let's say that a \gls{neuron} activates due to a visual stimulus, and shortly after a \gls{neuron} activates due to pain. The connection will strengthen between them as they occur in phase.\cite[p.~63]{hebb} This would lead you to associating the visual stimuli to pain. This psychology is called ‘association psychology,’ and its premise is that learning is the association of ideas over time, which in turn creates an idea.\cite{learn}
+

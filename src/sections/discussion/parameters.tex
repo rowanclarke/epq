@@ -1,0 +1,118 @@
+\section{Parameters}
+\label{params}
+
+\subsection{Learning Paradigms}
+\label{paradigms}
+
+A learning paradigm specifies what the general architecture of the \gls{model} is. For example, if we only have inputs to a neural network with no target data, we cannot train a \gls{model} with outputs. As this determines the very core of the design of the \gls{model}, we call this a paradigm.
+
+Consider the different types of learning paradigms, supervised, unsupervised, and reinforcement learning.
+
+\subsubsection{Supervised Learning}
+
+Supervised learning is where the machine is tasked to fit target data. The training set $T$ can be expressed as $$T=\{X_1, Y_1\},\{X_2, Y_2\},\cdots,\{X_I, Y_I\}$$ where $X_i$ is an input, $Y_i$ is the desired outcome of $X_i$, and $I$ is the length of the training set $T$. The machine propagates back through the neural network to adjust the \gls{synapse}s in order to fit closer to the target data.
+
+An example of a supervised learning \gls{model} would be the \gls{perceptron} \gls{model}.
+
+\subsubsection{Unsupervised Learning}
+
+Unsupervised learning is where the machine alters the \gls{synapse}s in the neural network solely based upon the inputs. This is typically used to classify data or cluster data.
+
+An example of an unsupervised \gls{model} is a K-means clustering problem.
+
+\subsubsection{Reinforced Learning}
+
+Reinforcement learning is where the machine is given an environment in which the outputs control, which are then rectified through the environment feedback. For example, if a chess AI made a move, the way we give feedback on the move is through an environment, not target data. 
+
+We can also have a separate neural network act as the environment, in which we call this an adversarial network; the neural network act as each others environment.
+
+\subsection{Determining the Model Parameters}
+
+To determine what \gls{model} parameters we should use, i.e. the number of \gls{hidden} \gls{layer} and \gls{neuron}s in each \gls{layer}, we must understand intuitively what a \gls{neuron} represents and what \gls{layer}s represent.
+
+A \gls{neuron} is a function of the \gls{neuron}s in the previous \gls{layer}. If our function is the product of a training parameter $w$ and a dependent variable $x$, we can treat this as a line $wx$. As we can also train a bias $b$, we result in the equation $wx+b$. If we have multiple \gls{neuron}s in the previous \gls{layer}, we can treat this as a line through multiple dimensions $w_1x_1+w_2x_2+\cdots+b$. In other words, a \gls{neuron} can classify a \gls{lin} relationship from the previous \gls{layer}.
+
+A \gls{layer} can now represent the building and accumulating of features, as if our \gls{lin} relationship takes in \gls{lin} functions, we achieve a \gls{nlin} relationship. As an example, the output should determine the representation of shapes, which classifies the relationship from the previous \gls{layer} of the representation of lines. 
+
+This is to say that if we are able to identify lines in the first \gls{layer}, we can identify lines in those lines in the next \gls{layer}, producing shapes and \gls{nlin} equations. Consider the datasets below
+
+% simple
+% o x
+% x o
+
+
+% complex 2-3-2-1
+% o x x 
+% o o x
+% o x x
+% o o x
+
+\begin{tikzpicture}
+\begin{axis}[%
+    scatter/classes={%
+        o={mark=o,draw=black},
+        x={mark=x,draw=black}
+    },
+    xlabel={Input 1},
+    ylabel={Input 2},
+    legend pos=outer north east
+]
+\addplot[scatter,only marks,%
+    scatter src=explicit symbolic]%
+table[meta=label] {
+x y label
+0 0 o
+1 0 x
+0 1 x
+1 1 o
+};
+\addlegendentry{$0$}
+\addlegendentry{$1$}
+\end{axis}
+\end{tikzpicture}
+\hskip 5pt
+\begin{tikzpicture}
+\begin{axis}[%
+    scatter/classes={%
+        o={mark=o,draw=black},
+        x={mark=x,draw=black}
+    },
+    xlabel={Input 1},
+    ylabel={Input 2},
+    legend pos=outer north east
+]
+\addplot[scatter,only marks,%
+    scatter src=explicit symbolic]%
+table[meta=label] {
+x y label
+0 0 o
+0 0.5 x
+0 1 x
+0.3333 0 o
+0.3333 0.5 o
+0.3333 1 x
+0.6667 0 o
+0.6667 0.5 x
+0.6667 1 x
+1 0 o
+1 0.5 o
+1 1 x
+};
+\addlegendentry{$0$}
+\addlegendentry{$1$}
+\end{axis}
+\end{tikzpicture}
+
+The one on the left can be described as a combination of two lines. As the combination is \gls{lin}, we only need one \gls{layer} for the lines. This gives us the \gls{model} of $2\rightarrow2\rightarrow1$.
+
+The one on the right is more complicated. There are three lines that can be used to classify the different sections in the dataset, but they cannot be combined \gls{lin}ly, as they intersect twice. Therefore, we have the \gls{model} of $2\rightarrow3\rightarrow2\rightarrow1$.
+
+This is backed up by the successfulness of each model architecture for the simple model and complex model in \apdx{resmod}.
+
+\subsection{Determining the Hyperparameters}
+
+The hyperparameters are parameters that you specify before the main computation of the model. This primarily includes the learning rate. The learning rate details how much the weight is changed based on a given gradient. This parameter was discussed earlier in \sect{backprop}, however, it is important to understand how to determine its value.
+
+If your problem is complex, then having too large of a learning parameter could result in your program not finding a solution. This is because it is skipping the points at which the cost is the lowest, and thus we are losing information about the gradient. It can be thought of as though we are randomly trying points until they reach a gradient of 0.
+
+If your problem is simple, then having too small of a learning parameter means that it will take a long time to reach zero cost. This is because when the gradient gets smaller, which will happen with simple examples, the weights change less and less. However, if you use too high of a learning parameter, you risk not finding the shallow gradient, meaning you cycle back and forth between values.

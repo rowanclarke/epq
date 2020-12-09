@@ -1,0 +1,127 @@
+
+
+If we want our output to be a horizontal edge detector for an image, we would use the matrix
+
+\begin{equation}
+\begin{bmatrix}
+1 & 2 & 1 \\
+0 & 0 & 0 \\
+-1 & -2 & -1
+\end{bmatrix}
+\end{equation}
+
+We can see that the nodes directly next to the target node are weighted more than those slightly farther away, and that the bottom row of the matrix is negative. 
+This is so that if there is any discernible difference in colour horizontally it is amplified. To ensure that our output is positive, we must take the absolute of output. 
+
+We apply the same logic vertically.
+\begin{equation}
+\begin{bmatrix}
+1 & 0 & -1 \\
+2 & 0 & -2 \\
+1 & 0 & -1
+\end{bmatrix}
+\end{equation}
+
+If we apply these filters as we did in \fig{fig:conv}, we achive the following images in \fig{fig:hedge} and \fig{fig:vedge}.
+
+\begin{figure}[h]
+\setlength{\unitlength}{0.14in}
+\centering
+
+\begin{tikzpicture}[scale=0.30](18,3) 
+
+\node at (-0.8, 3) {$\begin{bmatrix}
+1 & 2 & 1 \\
+0 & 0 & 0 \\
+-1 & -2 & -1
+\end{bmatrix}$};
+\node at (7.5, 0) [below] {input};
+\node at (14, 0) [below] {$\bold{G}_y$};
+
+\fill[black!] (4.5,3) rectangle (8.5, 5);
+\fill[black!] (7.5,5) rectangle (9.5, 0);
+
+\fill[black!] (12,2) rectangle (13, 5);
+\fill[black!] (12,4) rectangle (15, 5);
+
+\fill[black!75!white] (15,4) rectangle (16, 5);
+\fill[black!75!white] (13,2) rectangle (14, 4);
+
+\fill[black!25!white] (14,2) rectangle (15, 4);
+
+\draw[step=1, very thin, xshift=0.5cm] (4, 0) grid (10, 6);
+\draw[step=1, very thin] (12, 1) grid (16, 5);
+
+\end{tikzpicture}
+\caption{The horizontal edge detector applied to an image, $\bold{G}_y$}
+\label{fig:hedge}
+\end{figure}
+
+\begin{figure}[h]
+\setlength{\unitlength}{0.14in}
+\centering
+
+\begin{tikzpicture}[scale=0.30](18,3) 
+
+\node at (0.2, 3) {$\begin{bmatrix}
+1 & 0 & -1 \\
+2 & 0 & -2 \\
+1 & 0 & -1
+\end{bmatrix}$};
+
+\node at (7.5, 0) [below] {input};
+\node at (14, 0) [below] {$\bold{G}_x$};
+
+\fill[black!] (4.5,3) rectangle (8.5, 5);
+\fill[black!] (7.5,5) rectangle (9.5, 0);
+
+\fill[black!] (15, 1) rectangle (16, 4);
+\fill[black!] (13, 1) rectangle (16, 2);
+
+\fill[black!75!white] (15,4) rectangle (16, 5);
+\fill[black!75!white] (13,2) rectangle (14, 4);
+
+\fill[black!25!white] (14,2) rectangle (15, 4);
+
+\draw[step=1, very thin, xshift=0.5cm] (4, 0) grid (10, 6);
+\draw[step=1, very thin] (12, 1) grid (16, 5);
+
+\end{tikzpicture}
+\caption{The vertical edge detector applied to an image, $\bold{G}_x$}
+\label{fig:vedge}
+\end{figure}
+
+
+%We can combine the output images into a final output image that represents all edges using the following equation
+
+%\begin{equation}
+%\bold{G} = \sqrt{{\bold{G}_x}^2+{\bold{G}_y}^2}
+%\label{eq:edge}
+%\end{equation}
+
+
+%\begin{figure}[H]
+%\setlength{\unitlength}{0.14in}
+%\centering
+
+%\begin{tikzpicture}[scale=0.30](18,3) 
+%
+%\node at (14, 0) [below] %{$\sqrt{{\bold{G}_x}^2+{\bold{G}_y}^2}$};
+%
+%\fill[black!71!white] (12,2) rectangle (13, 5);
+%\fill[black!71!white] (12,4) rectangle (15, 5);
+%
+%\fill[black!71!white] (15, 1) rectangle (16, 4);
+%\fill[black!71!white] (13, 1) rectangle (16, 2);
+%
+%\fill[black!75!white] (15,4) rectangle (16, 5);
+%\fill[black!75!white] (13,2) rectangle (14, 4);
+%
+%\fill[black!25!white] (14,2) rectangle (15, 4);
+%
+%\draw[step=1, very thin] (12, 1) grid (16, 5);
+%
+%\end{tikzpicture}
+%\caption{REDO The vertical combined with the %horizontal edge detector}
+%\label{fig:gedge}
+%\end{figure}

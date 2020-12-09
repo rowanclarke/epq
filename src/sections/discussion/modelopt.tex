@@ -1,0 +1,52 @@
+
+
+\section{Modelling Optimisations}
+
+
+Now that we have seen how to \gls{model} a neural network such that the machine can perform gradient descent on relevant data, we can create our own \gls{model}s.
+
+\subsection{Variational Auto-encoder}
+
+A variational auto-encoder attempts to use a latent \gls{vec}, $z$, that is a sample from a probability distribution of a variable. Therefore, the encoder, $q_\phi(z|X)$ must be a distribution. As a probability distribution is defined as $N(\mu, \sigma^2)$, we can sample the latent \gls{vec} from a mean \gls{vec} and a standard deviation \gls{vec}.  
+
+\begin{figure}[ht]
+\setlength{\unitlength}{0.14in}
+\centering
+\begin{picture}(26.4,8) 
+\put(0, 2.0){\framebox(2.2, 2.2){$X$}}
+
+\mline{2.7}{5.6}{5.0}{-2.8}
+\mline{2.7}{0.6}{5.0}{0.0}
+\mline{7.7}{0.6}{0.0}{2.2}
+\mline{2.7}{0.6}{5.0}{2.8}
+\mline{2.7}{5.6}{5.0}{0.0}
+\mline{2.7}{0.6}{0.0}{5.0}
+\mline{7.7}{3.4}{0.0}{2.2}
+
+\put(8.2, 3.4){\framebox(2.2, 2.2){$\mu$}}
+
+\put(8.2, 0.6){\framebox(2.2, 2.2){$\sigma$}}
+
+\put(2.1, 6.1){$\overbrace{\qquad\qquad\qquad\qquad\quad}^{q_\phi(z|X)}$}
+
+\put(10.9, 2.9){$\left\} \rule{0pt}{12mm}\right.$}
+
+\put(12.6, 2.0){\framebox(2.2, 2.2){$z$}}
+
+\mline{15.3}{2.0}{5.0}{-1.4}
+\mline{15.3}{4.2}{5.0}{1.4}
+\mline{20.3}{0.6}{0.0}{5.0}
+\mline{15.3}{2.0}{0.0}{2.2}
+
+\put(11.9, 6.1){$\overbrace{\qquad\qquad\qquad\qquad\quad}^{p_\theta(\tilde{X}|z)}$}
+
+\put(20.8, 2.0){\framebox(2.2, 2.2){$\tilde{X}$}}
+
+\end{picture}
+\caption{The varaitional auto-encoder with the probabilistic encoder $q_\phi$ and decoder $p_\theta$.}
+\label{fig:vae}
+\end{figure}
+
+Sampling from a distribution allows the variable to represent a feature, as small changes in a feature should have a similar output. However, since this give a greater reconstruction loss than a regular auto-encoder due to the restriction, the standard deviation, $\sigma$, will become $0$, such that it acts as a regular auto-encoder. Therefore, we must compare the sample distribution, $N(\mu, \sigma^2)$, to a distribution of $\sigma=1$, $N(0,1)$, and make sure they are roughly equal. This function is called the Kullback–Leibler divergence, $D_{KL}(\alpha||\beta)$, and returns $0$ when the distributions $\alpha,\beta$ are equal.
+
+As we cannot back-\gls{prop} through a sample of a distribution, we have to take out the sampled distribution into a normal variable, and then apply the standard deviation and mean to achieve a result. This will then give us a method of back-propagating through the variables. This essentially gives us $z=\sigma x+\mu$, where $x\sim N(0,1)$.

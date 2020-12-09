@@ -1,0 +1,48 @@
+
+
+\section{Results}
+\label{results}
+\subsection{Gradient Descent}
+\label{resgd}
+\begin{figure}[H]
+\centering
+\includegraphics[width=14cm]{images/gradientdescent2.png}
+\caption{We can see from our own example, that the cost is being reduced in the most efficient way, $\nabla C$ by adjusting the weights.}
+\end{figure}
+
+\subsection{Training Model}
+\label{restm}
+\begin{figure}[H]
+\includegraphics[width=7cm]{images/1.png}
+\includegraphics[width=7cm]{images/2.png}
+\includegraphics[width=7cm]{images/3.png}
+\includegraphics[width=7cm]{images/4.png}
+\caption{The data the model uses is an XOR function. With each epoch iteration of 750, we can see how our function (fit) gets closer to the actual results (data), decreasing the cost.}
+\end{figure}
+
+\subsection{Model Parameters}
+\label{resmod}
+
+\subsubsection{Simple Model}
+\label{ressimp}
+\begin{figure}[H]
+
+\includegraphics[width=4.6cm]{images/parameters/simple/line-.png}
+\includegraphics[width=4.6cm]{images/parameters/simple/line.png}
+\includegraphics[width=4.6cm]{images/parameters/simple/line+.png}
+
+\caption{Left model: 2-1; Middle model: 2-2-1; Right model: 2-3-2-1;}
+\end{figure}
+
+\subsubsection{Complex Model}
+\label{rescomp}
+\begin{figure}[H]
+
+\includegraphics[width=4.6cm]{images/parameters/complex/line-.png}
+\includegraphics[width=4.6cm]{images/parameters/complex/line.png}
+\includegraphics[width=4.6cm]{images/parameters/complex/line+.png}
+
+\caption{Left model: 2-2-1; Middle model: 2-3-2-1; Right model: 2-8-4-2-1;}
+\end{figure}
+
+The left model of 2-2-1 results in a cost of approximately zero. There are many reasons that could allow this to happen. Firstly, two hidden neurons implies that there are two linear lines, however, that is clearly not possible given the data. Therefore there must be a type of rounding error that allows more complexity in the neuron. Secondly, since we are using a sigmoid activation function, it limits the range to $0<x<1$. Therefore, the combination of these lines do not have to be non-linear, as our activation is not.

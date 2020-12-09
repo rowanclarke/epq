@@ -2,16 +2,34 @@
 \documentclass[letterpaper]{article}
 \usepackage{times}
 \usepackage{graphicx}
-\usepackage{breakcites}
+\usepackage{appendix}
 \usepackage{amsmath}
 \usepackage{float}
-\usepackage{tikz}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{width=6cm}
+\usepackage[superscript]{cite}
+\usepackage{hyperref}
+\usepackage[toc]{glossaries}
+
+\usetikzlibrary{decorations.pathreplacing}
 \usepackage{algorithm,algorithmic,a4wide,amssymb,natbib,multicol,enumitem,url}
-\usepackage[breaklinks]{hyperref}
-\usepackage[top=3.7cm, bottom=3.7cm, left=3.7cm, right=3.7cm]{geometry}
+\usepackage[top=3cm, bottom=3cm, left=3.7cm, right=3.7cm]{geometry}
+\usepackage{gensymb}
+
 \newcommand{\mline}[4]{\put(#1,#2){\qbezier(0,0)(0,0)(#3,#4)}}
 \newcommand{\eq}[1]{Equation \ref{#1}}
 \newcommand{\fig}[1]{Figure \ref{#1}}
+\newcommand{\sect}[1]{Section \ref{#1}}
+\newcommand{\apdx}[1]{Appendix \ref{#1}}
+
+
+\newcommand{\mx}[1]{\mathbf{#1}}
+
+
+\makeglossaries
+
+\input{sections/glossary}
+
 \begin{document}
 
 \title{Can machines learn?}
@@ -21,7 +39,17 @@
 
 \begin{abstract}
 
-This is an abstract.
+In this dissertation, we go through the meaning of learning and use it to create and justify a model that can be executed computationally. We then go over the methods of teaching the model.
+
+The methodology outlines a path to firstly determine the parameters to use through understanding what they represent, and secondly justify the extent to which a problem can be solved using machine learning.
+
+To understand what the parameters in a neural network mean, we use a combination of algebra and examples of simple and complex problems to devise a method for determining the parameters.
+
+We then walk through the limitations to a model, which take into consideration the model parameters - making a correlation to the previous investigation - and overcoming these through the use of simple optimisations, which prove useful in different types of data. We then discuss the use of decomposition to architect a complex model, rather than assuming the neural network will find a pattern.
+
+Taking all these factors into consideration, we produce and model our own optimisations for our own problem, which leads to the current research of present applications and future applications of machine learning.
+
+We then conclude our understanding by justifying what factors are required to state that machines can learn.
 
 \vspace{7mm}
 \noindent
@@ -32,21 +60,45 @@ This is an abstract.
 \tableofcontents
 \newpage
 
-\input{sections/intro.tex}
+\input{sections/intro}
 
-\input{sections/perceptron.tex}
+\newpage
 
-\input{sections/arch.tex}
+\input{sections/research/learning}
 
-\section{Conclusion}
-\label{conc}
+\input{sections/research/perceptron}
+
+\newpage
+
+\input{sections/methodology/methods}
+
+\newpage
+
+\input{sections/discussion/parameters}
+
+\input{sections/discussion/limit}
+
+\input{sections/discussion/opt}
+
+\input{sections/discussion/modelopt}
+
+\input{sections/discussion/uses}
+
+\newpage
+
+
+\input{sections/conc}
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
+\newpage
+
+\appendix
+
+\printglossary
+
+\input{sections/appendix}
 
 \end{document}
-
-
-
-
-
-
-
-

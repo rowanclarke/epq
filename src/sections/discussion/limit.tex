@@ -1,0 +1,61 @@
+
+\section{Limitations}
+\label{lim}
+
+\subsection{Model Limitations}
+
+\subsubsection{Inaccuracies}
+\label{inacc}
+
+If a problem is too complex, the computer may not be able to find a solution. It will therefore resolve a minimum that is equally bad at each input, producing an inaccurate result. This could be due to the simplicity of the model. This decreases the flexibility of the neural network to find patterns. This can be decreased through using a suitable model complexity or giving the machine an incentive to find the correct pattern through the use of \gls{decomposition} and optimisations, or more data such that the pattern is more easily recognised. \cite{ngcan}
+
+\subsubsection{Overfitting}
+\label{overfit}
+
+If a neural network has too many parameters or rather more than is needed, it may be able to memorise the input instead of learning a pattern. This gives the illusion that it has worked with the given training data, but when it is given test data, it will not produce accurate results. This is because there are many different solutions to an overly complex model, each with a different pattern. As this cannot, therefore, attribute a single pattern to the model, we do not classify it as learning, but rather memorising. The effect of this can be reduced through simplifying the model to a suitable level or influencing the model to fit to a specific pattern using optimisations and decomposition, or more data such that there is only one pattern that achieves a zero cost.
+
+\subsection{Physical Limitations}
+
+\subsubsection{Data}
+\label{limdata}
+In supervised learning, you must provide target data to each input. If this data is not sanitised or large enough, the network will find erroneous patterns and produce an incorrect output.\cite{ngcan}
+
+Furthermore, the data you use as input to the neural network must be related to the output, and no relevant data should be left out; the computer doesn't understand the situation, and you cannot assume it does. If you do not know what fields may influence the output, use as much information as possible, increasing only the input \gls{layer} only marginally increases the computation.
+
+This isn't so much of a problem in corporations that manage multiple customers and branches, as they can easily sample data.
+
+
+\subsubsection{Hardware}
+
+If your model is too complex, especially if it is more complex than it should be, it could take a long time to find a solution. This is because it would have to perform more calculations per \gls{epoch}, and more epochs to find the solution. If you limit the time and computation of training the model, you risk limiting the number of items in your dataset, and you see the same problems that we earlier discussed in \sect{limdata}.
+
+To reduce computation, you can simplify the model, however, if this is not possible, you could implement optimisations and use multiple neural networks that each work on a given simpler task to decompose the problem. 
+
+Again, in large industries, the hardware is abundant, and it usually isn't seen as a limitation.
+
+\subsection{Legal and Ethical Concerns}
+
+There are times when the use of machine learning can produce legal, ethical and moral dilemmas. Concerns include data harvesting, liability, discrimination and profiling, and job displacement. We must take these scenarios into consideration to justify whether a problem can be solved under the law.
+
+\subsubsection{Data Harvesting}
+
+Data Harvesting is where a large corporation surveys and polls information about the clients they serve. This is necessary such that the model that they train will correctly select the targeted advertisement. This has privacy concerns for the client, as some information may be sensitive. The Data Protection Act prohibits companies from storing data about an individual that is not necessarily required for the purpose that the company sells, without their consent. Therefore, companies that do store a lot of information about you, such as Google, require you to consent to their terms. So, although it is legal to use data harvesting, is it moral to have your product only accessible through surrendering your privacy?
+
+\subsubsection{Liability}
+
+Liability is a risk when the output dictates a decision that can have life-threatening consequences. These include autonomous vehicles; if the machine makes a moral decision or mistake, who is responsible? Would it decide to swerve out the way to avoid hurting the group of people, but hurt someone who did nothing wrong or vice versa?
+
+\subsubsection{Discrimination and Profiling}
+
+Profiling is where the machine uses personal information as input to dictate the output. 
+This could be dangerous if it determines the opportunity for a service. As an example, if it is used in qualifying loans or credit; is it ethical to use race or gender as inputs when estimating return rates when there is no credit history? It is clear to see that this can cause a discrimination issue.\cite{ngcan}
+
+\subsubsection{Job Displacement}
+
+The most likely threat to our daily lives that machine learning imposes is the use of it in the workforce. Tasks that have a pattern with large amounts of data can be aided significantly with the use of machine learning, decreasing job income and security.
+
+This may not seem to be a large issue as it only affects certain jobs, but when these jobs are likely the entry point for apprenticeships and work experience, the employability for those new to the workforce suffers.
+
+\subsection{Conclusion}
+
+To overcome both model and physical limitations, we require optimisations to decrease computation. The optimisations will have to be specific to the problem itself, as it would otherwise defer from the model we initially have. We could also use decomposition to incentivise the neural network to find more appropriate solutions, where the parts of the total model deal with a simpler problem.
